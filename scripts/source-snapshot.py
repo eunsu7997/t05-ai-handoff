@@ -9,7 +9,7 @@ for f in root.rglob('*'):
  except UnicodeDecodeError:continue
 files['public/favicon.svg']=(root/'public/favicon.svg').read_text()
 # Hosting declares logical bindings only; no secrets or Site identity needed for reproduction.
-files['.openai/hosting.json']=json.dumps({'d1':'DB','r2':None},indent=2)
+files['.openai/hosting.json']=(root/'.openai/hosting.json').read_text()
 files['.gitignore']=(root/'.gitignore').read_text()
 (root/'data/source-snapshot.json').write_text(json.dumps(files,ensure_ascii=False))
 with zipfile.ZipFile(root/'public/source.zip','w',zipfile.ZIP_DEFLATED) as z:
