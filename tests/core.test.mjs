@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {kstDate,normalizeWeather,outcome,comparison,validate} from '../lib/core.ts';
+const f=(name)=>JSON.parse(fs.readFileSync(`data/t04/fixtures/${name}.json`,'utf8'));
+assert.equal(kstDate('2026-08-24T14:59:59Z'),'2026-08-24');
+assert.equal(kstDate('2026-08-24T15:00:00Z'),'2026-08-25');
+assert.equal(normalizeWeather({current:{temperature_2m:20.1,time:'2026-08-24T12:15'},current_units:{temperature_2m:'°C'},utc_offset_seconds:0},'2026-08-24T12:16Z').source_time,'2026-08-24T12:15Z');
+assert.throws(()=>normalizeWeather({current:{temperature_2m:'20'},current_units:{temperature_2m:'°C'}},'2026-08-24T12:16Z'));
+assert.throws(()=>validate({...f('normal-d1-a').payload,normalized_value:Infinity}));
+for(const [name,code] of [['timeout','timeout'],['auth-401','auth'],['rate-429','rate_limit'],['offline','offline'],['schema-break','schema_error']])assert.equal(outcome(f(name)).error,code);
+assert.equal(comparison([f('normal-d1-b').payload,f('normal-d2').payload]).signed,15);
+assert.equal(comparison([f('normal-d1-a').payload]).state,'insufficient');
+assert.equal(comparison([f('normal-d1-b').payload,{...f('normal-d2').payload,unit:'x'}]).state,'unit_mismatch');
+console.log('12 core checks passed: KST boundary, upstream normalization, invalid payload, 5 failures, comparison');
