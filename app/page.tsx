@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useState} from "react";
-import { BOARD_URL, SITE_ORIGIN, parseBoardResponse } from "@/lib/client-api";
+import { BOARD_URL, SITE_ORIGIN, parseBoardResponse, publicWeatherRequest } from "@/lib/client-api";
 import {Tabs,TabsList,TabsTrigger,TabsContent} from "@/components/ui/tabs";
 import {Table,TableHeader,TableHead,TableBody,TableRow,TableCell} from "@/components/ui/table";
 import {RefreshCw,Thermometer,Database,ShieldCheck,Activity,ExternalLink,CheckCircle2,TriangleAlert} from "lucide-react";
@@ -9,7 +9,7 @@ const reasons:Record<string,[string,string]>={timeout:['응답 시간이 초과�
 function time(iso:string|null){return iso?new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',dateStyle:'medium',timeStyle:'medium',hour12:false}).format(new Date(iso)):'출처가 시각을 제공하지 않음';}
 export default function Board(){const [mode,setMode]=useState('live'),[live,setLive]=useState<any>(null),[replay,setReplay]=useState<any>(null),[session,setSession]=useState(''),[busy,setBusy]=useState(false),[message,setMessage]=useState(''),[reports,setReports]=useState<any[]>([]),[tab,setTab]=useState('board');
  const state=mode==='live'?live:replay,r=state?.current_reading,rows=state?.daily_readings??[],status=state?.status,stale=status?.freshness==='stale',comp=state?.last_comparison;
- async function call(payload:any){const response=await fetch(BOARD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const data:any=await parseBoardResponse(response);if(payload.action==='live')setLive(data);else setReplay(data);return data;}
+ async function call(payload:any){const requestPayload=payload.action==='live'?await publicWeatherRequest():payload;const response=await fetch(BOARD_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(requestPayload)});const data:any=await parseBoardResponse(response);if(payload.action==='live')setLive(data);else setReplay(data);return data;}
  async function act(action:string,fixture_id?:string){setBusy(true);setMessage('');try{return await call({action,fixture_id,session});}catch(e:any){setMessage(e.message);throw e;}finally{setBusy(false);}}
  useEffect(()=>{setSession(crypto.randomUUID());fetch(BOARD_URL).then(async res=>{const data:any=await parseBoardResponse(res);setLive(data)}).catch(e=>setMessage(e.message));},[]);
  useEffect(()=>{const context=(document as any).modelContext;if(!context?.registerTool)return;const lifecycle=new AbortController();try{Promise.resolve(context.registerTool({name:'refresh_public_temperature',description:'실제 공개 기온을 조회하고 같은 날짜의 저장 기록을 갱신합니다.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:false},async execute(input:any){if(!input||Object.keys(input).length)throw new Error('Expected empty object');setMode('live');const data=await act('live');return {status:data.status,reading:data.current_reading,daily_count:data.daily_readings.length};}},{signal:lifecycle.signal})).catch(()=>{});}catch{}return()=>lifecycle.abort();},[session]);
