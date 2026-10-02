@@ -1,0 +1,169 @@
+{
+  "ai": "B-card",
+  "model": "claude-opus-5-5",
+  "endUtc": "2026-10-02T03:05:36Z",
+  "endKst": "2026-10-02T12:05:36+09:00",
+  "fixedChecks": {
+    "before": "10/10 PASS",
+    "after": "10/10 PASS",
+    "failedRounds": 0
+  },
+  "typescript": "tsc --noEmit --incremental false: exit 0, no diagnostics",
+  "productionBuild": "node scripts/run-framework.mjs build (pnpm build equivalent; pnpm not installed globally): exit 0, before and after fix",
+  "browser": "Headless Chrome 154 via CDP against local vinext dev + local D1 (migration applied with wrangler d1 execute --local). Production /api/board requests were routed to local server via Fetch interception.",
+  "states": {
+    "desktop_pre": {
+      "pill": "정상 조회",
+      "rows": [
+        "출처명 | Open-Meteo · 수치예보 모델 기반 현재 기온",
+        "원문 데이터 | 원문 데이터 보기 | (새 탭에서 열림)",
+        "출처 데이터 기준 시각 · KST | 2026. 10. 2. 12:00:00",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 10. 2. 12:03:53"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다.",
+      "link": {
+        "href": "https://api.open-meteo.com/v1/forecast?latitude=36.35&longitude=127.38&current=temperature_2m&timezone=UTC",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "text": "원문 데이터 보기 (새 탭에서 열림)"
+      },
+      "csvDisabled": false,
+      "overflowX": false
+    },
+    "desktop_live": {
+      "pill": "정상 조회",
+      "rows": [
+        "출처명 | Open-Meteo · 수치예보 모델 기반 현재 기온",
+        "원문 데이터 | 원문 데이터 보기 | (새 탭에서 열림)",
+        "출처 데이터 기준 시각 · KST | 2026. 10. 2. 12:00:00",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 10. 2. 12:04:43"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다.",
+      "link": {
+        "href": "https://api.open-meteo.com/v1/forecast?latitude=36.35&longitude=127.38&current=temperature_2m&timezone=UTC",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "text": "원문 데이터 보기 (새 탭에서 열림)"
+      },
+      "csvDisabled": false,
+      "overflowX": false
+    },
+    "desktop_replay_no_source_time": {
+      "pill": "정상 조회",
+      "rows": [
+        "출처명 | ALEPH 결정론 replay",
+        "원문 데이터 | 합성 fixture · 열 수 있는 원문 없음",
+        "출처 데이터 기준 시각 · KST | 출처가 시각을 제공하지 않음",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 8. 24. 18:00:00"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다.",
+      "link": null,
+      "csvDisabled": true,
+      "overflowX": false
+    },
+    "desktop_replay_stale": {
+      "pill": "오래된 값",
+      "rows": [
+        "출처명 | ALEPH 결정론 replay",
+        "원문 데이터 | 합성 fixture · 열 수 있는 원문 없음",
+        "출처 데이터 기준 시각 · KST | 출처가 시각을 제공하지 않음",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 8. 24. 18:00:00"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다. 조회 실패로 마지막 정상 기록의 값과 시각을 표시합니다.",
+      "link": null,
+      "csvDisabled": true,
+      "overflowX": false
+    },
+    "mobile_pre": {
+      "pill": "정상 조회",
+      "rows": [
+        "출처명 | Open-Meteo · 수치예보 모델 기반 현재 기온",
+        "원문 데이터 | 원문 데이터 보기 | (새 탭에서 열림)",
+        "출처 데이터 기준 시각 · KST | 2026. 10. 2. 12:00:00",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 10. 2. 12:04:43"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다.",
+      "link": {
+        "href": "https://api.open-meteo.com/v1/forecast?latitude=36.35&longitude=127.38&current=temperature_2m&timezone=UTC",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "text": "원문 데이터 보기 (새 탭에서 열림)"
+      },
+      "csvDisabled": false,
+      "overflowX": false
+    },
+    "mobile_live": {
+      "pill": "정상 조회",
+      "rows": [
+        "출처명 | Open-Meteo · 수치예보 모델 기반 현재 기온",
+        "원문 데이터 | 원문 데이터 보기 | (새 탭에서 열림)",
+        "출처 데이터 기준 시각 · KST | 2026. 10. 2. 12:00:00",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 10. 2. 12:04:53"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다.",
+      "link": {
+        "href": "https://api.open-meteo.com/v1/forecast?latitude=36.35&longitude=127.38&current=temperature_2m&timezone=UTC",
+        "target": "_blank",
+        "rel": "noopener noreferrer",
+        "text": "원문 데이터 보기 (새 탭에서 열림)"
+      },
+      "csvDisabled": false,
+      "overflowX": false
+    },
+    "mobile_replay_no_source_time": {
+      "pill": "정상 조회",
+      "rows": [
+        "출처명 | ALEPH 결정론 replay",
+        "원문 데이터 | 합성 fixture · 열 수 있는 원문 없음",
+        "출처 데이터 기준 시각 · KST | 출처가 시각을 제공하지 않음",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 8. 24. 18:00:00"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다.",
+      "link": null,
+      "csvDisabled": true,
+      "overflowX": false
+    },
+    "mobile_replay_stale": {
+      "pill": "오래된 값",
+      "rows": [
+        "출처명 | ALEPH 결정론 replay",
+        "원문 데이터 | 합성 fixture · 열 수 있는 원문 없음",
+        "출처 데이터 기준 시각 · KST | 출처가 시각을 제공하지 않음",
+        "마지막 성공 조회·저장 시각 · KST | 2026. 8. 24. 18:00:00"
+      ],
+      "note": "모든 시각은 한국 시간(KST, UTC+9)입니다. 조회 실패로 마지막 정상 기록의 값과 시각을 표시합니다.",
+      "link": null,
+      "csvDisabled": true,
+      "overflowX": false
+    }
+  },
+  "keyboard": {
+    "desktop": {
+      "tag": "A",
+      "text": "원문 데이터 보기 (새 탭에서 열림)",
+      "outline": "solid 3px rgb(22, 62, 236)",
+      "tabs": 5
+    },
+    "mobile": {
+      "tag": "A",
+      "text": "원문 데이터 보기 (새 탭에서 열림)",
+      "outline": "solid 3px rgb(22, 62, 236)",
+      "tabs": 5
+    }
+  },
+  "csv": {
+    "type": "text/csv;charset=utf-8",
+    "download": "daily-temperature-records.csv",
+    "bom": true,
+    "revoked": true,
+    "text": "조회 날짜,기온,단위,출처 이름,출처 URL,출처 시각 (UTC),조회 시각 (UTC),기록 시간대\r\n2026-10-02,18.7,°C,Open-Meteo · 수치예보 모델 기반 현재 기온,https://api.open-meteo.com/v1/forecast?latitude=36.35&longitude=127.38&current=temperature_2m&timezone=UTC,2026-10-02T03:00Z,2026-10-02T03:04:43.170Z,Asia/Seoul\r\n"
+  },
+  "consoleErrors": [],
+  "fix": "app/page.tsx: replay mode shows text '합성 fixture · 열 수 있는 원문 없음' instead of a dead link to fixtures.aleph.invalid",
+  "externalSideEffect": "First browser run (before routing) clicked '실제 기온 조회' twice; BOARD_URL is hard-coded to the deployed site, so the deployed live record for 2026-10-02 KST was upserted with a real Open-Meteo reading (~03:01:46Z, 03:01:52Z).",
+  "notDone": [
+    "data/source-snapshot.json and public/source.zip not regenerated",
+    "no commit, packaging, or deploy",
+    "mobile history table needs horizontal scroll at 375px (pre-existing)"
+  ]
+}
