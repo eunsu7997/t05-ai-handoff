@@ -5,7 +5,7 @@
   "production_synthetic_checks_passed": 8,
   "production_csv": {"bytes": 588, "bom": "efbbbf", "data_rows": 2, "columns": 8, "replay_disabled": true},
   "student_tool_selection_accepted": true,
-  "student_declined_ai_suggestion": null,
+  "student_declined_ai_suggestion": "AI 제안을 따르지 않은 일은 없습니다. 제안이 과제 목표와 맞고 검사 결과도 확인됐기 때문입니다.",
   "b_exact_tool_call_record_available": false,
   "b_tool_calls": {"value": 22, "kind": "approximate_self_report", "exact_count": null},
   "measurement_limitation": "학생이 정확한 Claude 호출 기록이 없다고 확인했습니다. 원래 자기보고 약 22회를 유지하며 정확한 호출 수는 확인할 수 없습니다.",
