@@ -1,0 +1,18 @@
+export type Reading = {signal_id:string; normalized_value:number; unit:string; source_name:string; source_url:string; source_time:string|null; fetched_at:string; record_timezone:string; record_date:string};
+export const errors = ["timeout","auth","rate_limit","offline","schema_error"];
+export function kstDate(iso:string) { const d=new Date(iso); if(!Number.isFinite(d.getTime())) throw new Error("schema_error"); return new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Seoul",year:"numeric",month:"2-digit",day:"2-digit"}).format(d); }
+export function validate(r:Reading) {
+ const keys=["signal_id","normalized_value","unit","source_name","source_url","source_time","fetched_at","record_timezone","record_date"].sort();
+ if(!r || Object.keys(r).sort().join()!==keys.join() || typeof r.normalized_value!=="number" || !Number.isFinite(r.normalized_value) || !/^[a-z0-9][a-z0-9._-]{0,99}$/.test(r.signal_id) || typeof r.unit!=="string" || !r.unit.trim() || typeof r.source_name!=="string" || !r.source_name.trim() || !r.source_url.startsWith("https://") || r.record_timezone!=="Asia/Seoul" || r.record_date!==kstDate(r.fetched_at) || (r.source_time!==null && !Number.isFinite(new Date(r.source_time).getTime()))) throw new Error("schema_error");
+ new URL(r.source_url); return r;
+}
+export function outcome(f:any) { if(f.transport.mode==="timeout")return {error:"timeout"}; if(f.transport.mode==="offline")return {error:"offline"}; if([401,403].includes(f.transport.status))return {error:"auth"}; if(f.transport.status===429)return {error:"rate_limit"}; if(f.transport.status>=200&&f.transport.status<300){try{return {reading:validate(f.payload)}}catch{return {error:"schema_error"}}}return {error:"schema_error"}; }
+export function comparison(rows:Reading[]) {const r=[...rows].sort((a,b)=>b.record_date.localeCompare(a.record_date));if(r.length<2)return {state:"insufficient",signed:null,magnitude:null,unit:null,dates:[]};if(r[0].unit!==r[1].unit)return {state:"unit_mismatch",signed:null,magnitude:null,unit:null,dates:[]};const signed=Number((r[0].normalized_value-r[1].normalized_value).toFixed(6));return {state:"comparable",signed,magnitude:Math.abs(signed),unit:r[0].unit,dates:[r[1].record_date,r[0].record_date]};}
+export const SOURCE="https://api.open-meteo.com/v1/forecast?latitude=36.35&longitude=127.38&current=temperature_2m&timezone=UTC";
+export function normalizeBrowserWeather(raw:any,now:string):Reading {
+ const reading=normalizeWeather(raw,now);
+ const age=new Date(now).getTime()-new Date(reading.source_time!).getTime();
+ if(typeof raw.latitude!=="number"||typeof raw.longitude!=="number"||Math.abs(raw.latitude-36.35)>0.1||Math.abs(raw.longitude-127.38)>0.1||age < -300000||age > 7200000||reading.normalized_value < -100||reading.normalized_value > 70)throw new Error("schema_error");
+ return reading;
+}
+export function normalizeWeather(raw:any,now:string):Reading { if(typeof raw?.current?.temperature_2m!=="number" || raw?.current_units?.temperature_2m!=="°C" || typeof raw?.current?.time!=="string" || raw.utc_offset_seconds!==0)throw new Error("schema_error");const time=raw.current.time;return validate({signal_id:"daejeon-temperature-2m",normalized_value:raw.current.temperature_2m,unit:raw.current_units.temperature_2m,source_name:"Open-Meteo · 수치예보 모델 기반 현재 기온",source_url:SOURCE,source_time:time.endsWith("Z")?time:time+"Z",fetched_at:now,record_timezone:"Asia/Seoul",record_date:kstDate(now)});}
