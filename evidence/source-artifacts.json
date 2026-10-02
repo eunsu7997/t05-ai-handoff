@@ -1,5 +1,10 @@
 [
   {
+    "commit": "ca65a36325938224aa9d71fbbe53204fde70e8be",
+    "filename": "t05-source-ca65a36325938224aa9d71fbbe53204fde70e8be.zip",
+    "sha256": "691a79244d5fd42d7c601828727d53e5bb6449628d3426587b3790a790bf7629"
+  },
+  {
     "commit": "60d9d5b5d9cc9944bf3195df8c3d8db6bedfaaf2",
     "filename": "t05-source-60d9d5b5d9cc9944bf3195df8c3d8db6bedfaaf2.zip",
     "sha256": "85f0cb781d8970d8ff6d7e185a35f770f83601031b9e5b3930b35ee28fabf9d2"
