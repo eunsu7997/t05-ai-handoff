@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-02T01:09:35.170Z",
+  "total": 10,
+  "passed": 8,
+  "results": [
+    {
+      "id": "T05-F01",
+      "description": "UTF-8 BOM, fixed eight-column header, empty input is header only",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F02",
+      "description": "Saved value/unit/date/source/UTC timestamps/timezone are preserved",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F03",
+      "description": "Records are ascending by date without changing the caller input",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F04",
+      "description": "Commas, quotes, CR/LF and Korean text survive CSV parsing",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F05",
+      "description": "Spreadsheet formulas in text are neutralized; negative numbers stay numeric",
+      "result": "FAIL",
+      "detail": "Expected values to be strictly equal:\n\n'=1+1' !== \"'=1+1\"\n"
+    },
+    {
+      "id": "T05-F06",
+      "description": "Missing source timestamp exports a blank cell without inventing a timestamp",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F07",
+      "description": "Replay scope is rejected explicitly even with plausible weather data",
+      "result": "FAIL",
+      "detail": "Missing expected exception."
+    },
+    {
+      "id": "T05-F08",
+      "description": "Only the eight public fields export; no raw payload/session/credentials",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F09",
+      "description": "Last stored records remain exportable after a failed refresh; no network request",
+      "result": "PASS"
+    },
+    {
+      "id": "T05-F10",
+      "description": "Existing core, SQL storage, API response and browser weather regression suites pass",
+      "result": "PASS"
+    }
+  ]
+}

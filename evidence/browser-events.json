@@ -1,0 +1,40 @@
+[
+  {
+    "at": "2026-10-02T01:26:12.179Z",
+    "scenario": "empty",
+    "event": "scenario_selected"
+  },
+  {
+    "at": "2026-10-02T01:26:12.501Z",
+    "scenario": "empty",
+    "event": "board_request",
+    "method": "GET"
+  },
+  {
+    "at": "2026-10-02T01:26:47.379Z",
+    "scenario": "filled",
+    "event": "scenario_selected"
+  },
+  {
+    "at": "2026-10-02T01:26:47.501Z",
+    "scenario": "filled",
+    "event": "board_request",
+    "method": "GET"
+  },
+  {
+    "at": "2026-10-02T01:26:57.638Z",
+    "scenario": "filled",
+    "event": "refresh_started_15_second_delay"
+  },
+  {
+    "at": "2026-10-02T01:27:05.650Z",
+    "scenario": "filled",
+    "event": "board_request",
+    "method": "POST"
+  },
+  {
+    "at": "2026-10-02T01:27:12.645Z",
+    "scenario": "filled",
+    "event": "refresh_response"
+  }
+]

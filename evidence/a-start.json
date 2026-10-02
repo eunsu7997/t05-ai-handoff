@@ -1,0 +1,12 @@
+{
+  "role": "A",
+  "started_at_utc": "2026-10-02T01:09:10.7465874+00:00",
+  "time_limit_seconds": 1200,
+  "service": "Codex",
+  "baseline_zip_sha256": "f7987448197b514fee752b95ffc92023fdf4f3125082e5b722c0b199590c4dec",
+  "start_commit": "ca65a36325938224aa9d71fbbe53204fde70e8be",
+  "fixed_checks_sha256": "c81933930ace81cca469130d037ea218dc1acce4c7d15628c5eb781cad0ea2ee",
+  "tool_call_limit": 60,
+  "exact_model": "not exposed to this session",
+  "started_at_kst": "2026-10-02T10:09:10.7465874+09:00"
+}
