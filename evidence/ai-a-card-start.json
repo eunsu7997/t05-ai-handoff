@@ -1,0 +1,13 @@
+{
+  "started_at_utc": "2026-10-02T02:49:01.0972744+00:00",
+  "time_limit_minutes": 20,
+  "tool_call_limit": 5,
+  "git_head": "HEAD\r\nfatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.\r\nUse '--' to separate paths from revisions, like this:\r\n'git <command> [<revision>...] -- [<file>...]'",
+  "git_status": "?? t05/",
+  "node_path": "C:\\Program Files\\nodejs\\node.exe",
+  "commands": [
+    "git rev-parse HEAD",
+    "git status --short",
+    "node tests/t05-fixed.test.mjs evidence/ai-a-card-before.json"
+  ]
+}

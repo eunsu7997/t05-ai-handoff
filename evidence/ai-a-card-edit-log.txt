@@ -1,0 +1,3 @@
+Call 2: Get-FileHash app/page.tsx app/globals.css (baseline fingerprints).
+Call 2: ReadAllText + exact block Replace + WriteAllText app/page.tsx; AppendAllText app/globals.css.
+Result: source name separated from original-data link; KST timestamps and stale-state explanation added. No fetch/storage/recovery/CSV functions edited.

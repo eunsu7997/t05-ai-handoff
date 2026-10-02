@@ -1,0 +1,10 @@
+{
+  "fixed_test_exit": 0,
+  "official_files_unchanged": true,
+  "typecheck_exit": 0,
+  "commands": [
+    "node tests/t05-fixed.test.mjs evidence/ai-a-card-after.json",
+    "Get-FileHash tests/t05-fixed.test.mjs T05-CONTRACT.md; compare before/after",
+    "node node_modules/typescript/bin/tsc --noEmit --incremental false"
+  ]
+}
