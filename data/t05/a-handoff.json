@@ -1,0 +1,15 @@
+{
+ "document_version":"T05_AI_A_V1",
+ "started_at":"2026-10-02T00:41:48Z",
+ "budget_minutes":30,
+ "budget_requests":10,
+ "work_requests":1,
+ "request_definition":"사용자가 보낸 구현 최초 요청 및 후속 지시. 준비 대화와 도구 실행은 모델 작업 요청에 합산하지 않음. 도구·검사 실행은 별도로 기록.",
+ "goal":"선택된 실제/합성 데이터의 일별 기록·원자료·상태·비교 결과를 JSON 파일로 다운로드한다.",
+ "current_state":"AI A는 lib/export-data.ts의 데이터 구성과 파일명·MIME·직렬화를 구현했다. tests/export-data.test.mjs에서 데이터 검사 10개가 PASS였다. UI 버튼 및 실제 다운로드는 미구현이며 전체 고정 검사는 미완료다. 실제 조회·저장 코드는 수정하지 않았다. 시작 버전 b44e8fe8...의 공개 소스와 ZIP은 별도로 보존했다.",
+ "run_commands":["npm run install:ci","node --experimental-strip-types tests/export-data.test.mjs","node --experimental-strip-types tests/core.test.mjs","node --experimental-strip-types tests/storage.test.mjs","node --experimental-strip-types tests/client-api.test.mjs","node --experimental-strip-types tests/browser-weather.test.mjs","node node_modules/typescript/bin/tsc --noEmit","npm run build"],
+ "passed_checks":"E01~E10의 데이터 계층 테스트 PASS. 브라우저가 필요한 E01/E02/E08/E09는 NOT_RUN. 어떤 고정 검사도 완전한 화면·다운로드 검증 PASS로 승격하지 않았음.",
+ "remaining_problems":["다운로드 버튼을 app/page.tsx에 추가하고 snapshot 로딩 전 disabled 처리","현재 선택 모드 state를 exportFile에 전달하고 Blob/다운로드/URL 해제 연결","새 환경 설치·실행 재현","동일한 고정 검사 10개를 그대로 재실행하고 실제 파일 다운로드·모드 전환 확인","AI B 시작·완료와 실제 시간/요청 수/실패 회차/통과 수 기록","고정 소스 버전 차이로 재작업량 계산 후 모델 이름 없는 최종 비교 보고서 작성"],
+ "next_actions":"공통 요청과 fixed-checks.json을 유지한다. A 종료 소스를 받으면 처음에 같은 검사 10개를 실행한다. 브라우저 검증 미실행은 PASS가 아니다. UI를 연결한 뒤 공통 30분·10회 한도 안에서 검증하고 결과를 기록한다.",
+ "do_not_touch":["data/t05/fixed-checks.json의 10개 ID·입력·기대 결과","기존 T04 실제 날짜·저장 기록·원천 URL·온도값","data/t04의 공식 fixture와 계약 파일","A 단계 결과 기록을 B 결과로 덮어쓰지 않기","인증·키·세션 UUID·개인정보 공개하지 않기","AI B에게 이 대화 전문을 전달하지 않기"]
+}

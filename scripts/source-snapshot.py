@@ -15,3 +15,7 @@ files['.gitignore']=(root/'.gitignore').read_text()
 with zipfile.ZipFile(root/'public/source.zip','w',zipfile.ZIP_DEFLATED) as z:
  for name,content in files.items():z.writestr(name,content)
 print(f'Public source snapshot: {len(files)} files')
+baseline=root/'data/pinned/b44e8fe8aa886ae26cdf4e4b5ac5c8d17c2e7d9c.json'
+if baseline.exists():
+ with zipfile.ZipFile(root/'public/source-baseline-b44e8fe8aa886ae26cdf4e4b5ac5c8d17c2e7d9c.zip','w',zipfile.ZIP_DEFLATED) as z:
+  for name,content in json.loads(baseline.read_text()).items():z.writestr(name,content)

@@ -1,0 +1,12 @@
+[
+ {"id":"E01","input":"저장 데이터 로딩 전","expected":"다운로드 버튼 비활성화"},
+ {"id":"E02","input":"로딩 완료, 기록 0건","expected":"daily_readings가 빈 배열인 유효 JSON 다운로드"},
+ {"id":"E03","input":"2026-10-01=17.4°C, 2026-10-02=13.3°C","expected":"두 날짜·값·단위 그대로 보존"},
+ {"id":"E04","input":"E03 각 기록 raw와 normalized","expected":"입력 객체와 깊은 비교 일치"},
+ {"id":"E05","input":"E03 비교 결과","expected":"signed=-4.1, unit=°C, 날짜=10월 1일→2일"},
+ {"id":"E06","input":"stale/rate_limit 및 마지막 정상 기록","expected":"상태·마지막 정상값·일별 기록 보존"},
+ {"id":"E07","input":"같은 날짜 갱신 후 기록 1건","expected":"행 추가 없이 최종값 1건"},
+ {"id":"E08","input":"실제/합성 모드 전환","expected":"선택 모드만 내보냄, 섞이지 않음"},
+ {"id":"E09","input":"다운로드 버튼 클릭","expected":".json 다운로드, MIME application/json, JSON.parse 성공"},
+ {"id":"E10","input":"내보내기 전후 입력·저장 기록","expected":"데이터 비변경, 세션 UUID·쿠키·인증 토큰을 출력에 추가하지 않음"}
+]

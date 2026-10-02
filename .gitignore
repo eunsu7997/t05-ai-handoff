@@ -48,3 +48,4 @@ next-env.d.ts
 # Reproducible source artifacts, generated before every build.
 data/source-snapshot.json
 public/source.zip
+public/source-baseline-*.zip
