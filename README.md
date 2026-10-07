@@ -1,5 +1,7 @@
 # 오늘의 진짜 정보판 · T04
 
+> **이 저장소는 ALEPH T05(AI 인수인계) 과제입니다.** T04 '오늘의 진짜 정보판'을 AI A(Codex)가 시작하고 AI B(Claude)가 이어받아 기능을 추가했습니다. 작업 규칙은 [T05-CONTRACT.md](T05-CONTRACT.md), 인수인계 기록은 [AI-A-CARD-HANDOFF.md](AI-A-CARD-HANDOFF.md)와 [AI-B-CARD-RESULT.md](AI-B-CARD-RESULT.md)에 있습니다.
+
 대전의 Open-Meteo 모델 기반 현재 기온 하나를 조회하고, 한국 날짜별로 하루 한 건 저장합니다. 관측소 실측값으로 표현하지 않습니다. 계정·키 없이 공개 데이터만 사용합니다.
 
 ## 구조
