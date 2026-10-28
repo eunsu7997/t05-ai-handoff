@@ -1,0 +1,25 @@
+name: Source and contract checks
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  offline-checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Source packaging excludes local state
+        run: python -B -m unittest discover -s scripts -p test_source_snapshot.py -v
+      - name: Frozen T05 contract and regressions
+        run: node tests/t05-fixed.test.mjs "${{ runner.temp }}/t05-fixed-results.json"

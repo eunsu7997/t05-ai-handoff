@@ -23,6 +23,10 @@ T04 정보판을 바탕으로 실제 저장 기록의 CSV 내보내기를 AI A �
 `scope + signal + date` 기본키에 atomic UPSERT를 사용합니다. 실패는 상태만 변경하고 읽기 테이블을 건드리지 않습니다. 합성 시험은 무작위 세션 scope에서 진행하여 실제 live 기록과 분리합니다. 이 세션은 인증이나 개인정보가 아닙니다. 실제 저장 실패는 외부 데이터 오류로 처리하지 않습니다.
 
 ## 실행
+
+소스 패키징 검사: `python -B -m unittest discover -s scripts -p test_source_snapshot.py -v`.
+소스 다운로드에서는 로컬 AI 도구 상태·작업 사본·키 파일·TypeScript 캐시를 제외합니다. 기존 T05 고정 계약과 검사 파일은 유지합니다.
+
 기존 잠금파일과 pnpm 사용. 의존성 설치 후:
 1. `python scripts/source-snapshot.py`
 2. `pnpm build`
